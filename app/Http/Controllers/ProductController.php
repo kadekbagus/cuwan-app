@@ -124,7 +124,7 @@ class ProductController extends Controller
         $newProduct->description = $request->description;
         $newProduct->price = $request->price;
         $newProduct->quantity = $request->quantity;
-        $newProduct->status = $request->status;
+        $newProduct->status = isset($request->status) ? $request->status : 'inactive';
         $newProduct->price = $request->price;
         $newProduct->discount = $request->discount;
         $newProduct->discount_percentage = $productHelper->getDiscountPercentage();
