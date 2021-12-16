@@ -15,10 +15,12 @@ class CreateProductOptionValuesTable extends Migration
     {
         Schema::create('product_option_values', function (Blueprint $table) {
             $table->bigIncrements('product_option_value_id');
-            $table->bigInteger('product_id');
             $table->bigInteger('product_option_id');
             $table->string('value_name', 75);
-            $table->decimal('price');
+            $table->decimal('price')->nullable();
+            $table->decimal('discount')->nullable();
+            $table->decimal('discount_percentage', 5, 2)->nullable();
+            $table->integer('quantity')->nullable();
             $table->timestamps();
         });
     }

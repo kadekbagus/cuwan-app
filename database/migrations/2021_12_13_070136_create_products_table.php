@@ -16,10 +16,14 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('product_id');
             $table->string('name', 255);
-            $table->text('description');
-            $table->decimal('price');
-            $table->integer('quantity');
-            $table->string('status', 12);
+            $table->text('description')->nullable();
+            $table->decimal('price')->nullable();
+            $table->decimal('discount')->nullable();
+            $table->decimal('discount_percentage', 5, 2)->nullable();
+            $table->integer('quantity')->nullable();
+            $table->string('status', 12)->nullable()->default('inactive');
+            $table->bigInteger('created_by')->nullable();
+            $table->bigInteger('updated_by')->nullable();
             $table->timestamps();
         });
     }
