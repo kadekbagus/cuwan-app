@@ -14,6 +14,6 @@ class ProductOptionValue extends Model
     protected $primaryKey = 'product_option_value_id';
 
     public function productOption() {
-        $this->belongsTo(ProductOption::class);
+        return $this->belongsTo(ProductOption::class);
     }
 }

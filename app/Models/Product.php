@@ -13,7 +13,7 @@ class Product extends Model
 
     protected $primaryKey = 'product_id';
 
-    public function options() {
+    public function variants() {
         return $this->hasMany(ProductOption::class, 'product_id', 'product_id');
     }
 

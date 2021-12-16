@@ -170,7 +170,7 @@ class ProductController extends Controller
             ], $httpCode);
         }
 
-        $product = Product::with('options')->where('product_id', $id)->first();
+        $product = Product::with('variants.variantValues')->where('product_id', $id)->first();
 
         if (!$product) {
             $errorMessage = 'data not found';

@@ -13,11 +13,11 @@ class ProductOption extends Model
 
     protected $primaryKey = 'product_option_id';
 
-    public function optionValues() {
-        $this->hasMany(ProductOptionValue::class, 'product_option_id', 'product_option_id');
+    public function variantValues() {
+        return $this->hasMany(ProductOptionValue::class, 'product_option_id', 'product_option_id');
     }
 
     public function product() {
-        $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }
