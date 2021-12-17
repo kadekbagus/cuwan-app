@@ -9,9 +9,10 @@ Alpine.start();
 import Vue from 'vue'
 import Hello from './components/hello'
 import Productlist from './components/productList'
+import Productcreate from './components/productCreate'
 
 const app = new Vue({
     el: '#app',
-    components: { Hello, Productlist }
+    components: { Hello, Productlist, Productcreate }
 })
 

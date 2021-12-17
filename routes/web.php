@@ -27,4 +27,8 @@ Route::get('/products', function () {
     return view('product-list');
 });
 
+Route::get('/product/create', function () {
+    return view('product-create');
+});
+
 
