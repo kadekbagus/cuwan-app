@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="bg-gray-300">
         <table>
             <thead>
                 <tr>
@@ -26,15 +26,24 @@
 export default {
     data () {
         return {
-            'listData': null
+            'listData': null,
+            'totalRecords': null,
+            'returnedRecords': null
         }
     },
     methods: {
         async getProductList() {
-            const res = await fetch('api/products')
-            const re = await res.json()
-            this.listData = re.data.records;
-            console.log(this.listData)
+            const response = await fetch('api/products');
+            if (response.status >= 200 && response.status <= 299) {
+                const jsonResponse = await response.json();
+                if (jsonResponse.code === 1 && jsonResponse.message === 'success') {
+                    this.listData = jsonResponse.data.records;
+                    this.totalRecords = jsonResponse.data.total_records;
+                    this.returnedRecords = jsonResponse.data.returned_records;
+                }
+            } else {
+                console.log(response.status, response.statusText)
+            }
         }
     },
     created: function () {
