@@ -5586,35 +5586,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     buildQueryString: function buildQueryString() {
-      var details = {
-        'name': this.name,
-        'description': this.description,
-        'status': this.status,
-        'price': this.price,
-        'discount': this.discount,
-        'quantity': this.quantity
-      };
-      var formBody = [];
-
-      for (var property in details) {
-        var encodedKey = encodeURIComponent(property);
-        var encodedValue = encodeURIComponent(details[property]);
-        formBody.push(encodedKey + "=" + encodedValue);
-      }
-
-      formBody = formBody.join("&");
-      return formBody;
+      console.log(this.name); // if(this.name.length == 0){
+      //     console.log('kosong')
+      // } else {
+      //     console.log('isi')
+      // }
+      // let details = {
+      //     'name': this.name,
+      //     'description': this.description,
+      //     'status': this.status,
+      //     'price': this.price,
+      //     'discount': this.discount,
+      //     'quantity': this.quantity
+      // }
+      // let formBody = [];
+      // for (let property in details) {
+      //     let encodedKey = encodeURIComponent(property);
+      //     let encodedValue = encodeURIComponent(details[property]);
+      //     formBody.push(encodedKey + "=" + encodedValue);
+      // }
+      // formBody = formBody.join("&");
+      // return formBody;
     },
     createProduct: function createProduct() {
-      var _this = this;
-
       var formBody = this.buildQueryString();
-      console.log(formBody);
-      this.postData('http://localhost:8585/api/product/store', formBody).then(function (data) {
-        console.log(data);
-
-        _this.clearForm();
-      });
+      console.log(formBody); // this.postData('http://localhost:8585/api/product/store', formBody)
+      // .then(data => {
+      //     console.log(data);
+      //     this.clearForm();
+      // });
     },
     postData: function postData() {
       var _arguments = arguments;
@@ -5630,7 +5630,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return fetch(url, {
                   method: 'POST',
                   // *GET, POST, PUT, DELETE, etc.
-                  mode: 'cors',
+                  mode: 'same-origin',
                   // no-cors, *cors, same-origin
                   cache: 'no-cache',
                   // *default, no-cache, reload, force-cache, only-if-cached
@@ -45765,277 +45765,275 @@ var render = function () {
         _vm._m(1),
         _vm._v(" "),
         _c("div", { staticClass: "mt-5 md:mt-0 md:col-span-2" }, [
-          _c("form", [
-            _c("div", { staticClass: "shadow overflow-hidden sm:rounded-md" }, [
-              _c("div", { staticClass: "px-4 py-5 bg-white sm:p-6" }, [
-                _c("div", { staticClass: "grid grid-cols-6 gap-6" }, [
-                  _c("div", { staticClass: "col-span-6 sm:col-span-3" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "block text-sm font-medium text-gray-700",
-                        attrs: { for: "first-name" },
-                      },
-                      [_vm._v("Products Name")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.name,
-                          expression: "name",
-                        },
-                      ],
-                      staticClass:
-                        "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md",
-                      attrs: {
-                        type: "text",
-                        name: "first-name",
-                        id: "first-name",
-                        autocomplete: "given-name",
-                      },
-                      domProps: { value: _vm.name },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.name = $event.target.value
-                        },
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-span-6" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "block text-sm font-medium text-gray-700",
-                        attrs: { for: "street-address" },
-                      },
-                      [_vm._v("Description")]
-                    ),
-                    _vm._v(" "),
-                    _c("textarea", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.description,
-                          expression: "description",
-                        },
-                      ],
-                      staticClass:
-                        "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md",
-                      domProps: { value: _vm.description },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.description = $event.target.value
-                        },
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-span-6 sm:col-span-3" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "block text-sm font-medium text-gray-700",
-                        attrs: { for: "last-name" },
-                      },
-                      [_vm._v("Price")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.price,
-                          expression: "price",
-                        },
-                      ],
-                      staticClass:
-                        "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md",
-                      attrs: {
-                        type: "text",
-                        name: "last-name",
-                        id: "last-name",
-                        autocomplete: "family-name",
-                      },
-                      domProps: { value: _vm.price },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.price = $event.target.value
-                        },
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-span-6 sm:col-span-3" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "block text-sm font-medium text-gray-700",
-                        attrs: { for: "email-address" },
-                      },
-                      [_vm._v("Discount")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.discount,
-                          expression: "discount",
-                        },
-                      ],
-                      staticClass:
-                        "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md",
-                      attrs: {
-                        type: "text",
-                        name: "email-address",
-                        id: "email-address",
-                        autocomplete: "email",
-                      },
-                      domProps: { value: _vm.discount },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.discount = $event.target.value
-                        },
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-span-6 sm:col-span-3" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "block text-sm font-medium text-gray-700",
-                        attrs: { for: "email-address" },
-                      },
-                      [_vm._v("Quantity")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.quantity,
-                          expression: "quantity",
-                        },
-                      ],
-                      staticClass:
-                        "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md",
-                      attrs: {
-                        type: "text",
-                        name: "email-address",
-                        id: "email-address",
-                        autocomplete: "email",
-                      },
-                      domProps: { value: _vm.quantity },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.quantity = $event.target.value
-                        },
-                      },
-                    }),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-span-6 sm:col-span-3" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "block text-sm font-medium text-gray-700",
-                        attrs: { for: "country" },
-                      },
-                      [_vm._v("Status")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.status,
-                            expression: "status",
-                          },
-                        ],
-                        staticClass:
-                          "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
-                        attrs: {
-                          id: "country",
-                          name: "country",
-                          autocomplete: "country-name",
-                        },
-                        on: {
-                          change: function ($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function (o) {
-                                return o.selected
-                              })
-                              .map(function (o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.status = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          },
-                        },
-                      },
-                      [
-                        _c("option", { attrs: { value: "active" } }, [
-                          _vm._v("Active"),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "inactive" } }, [
-                          _vm._v("Inactive"),
-                        ]),
-                      ]
-                    ),
-                  ]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "px-4 py-3 bg-gray-50 text-right sm:px-6" },
-                [
+          _c("div", { staticClass: "shadow overflow-hidden sm:rounded-md" }, [
+            _c("div", { staticClass: "px-4 py-5 bg-white sm:p-6" }, [
+              _c("div", { staticClass: "grid grid-cols-6 gap-6" }, [
+                _c("div", { staticClass: "col-span-6 sm:col-span-3" }, [
                   _c(
-                    "button",
+                    "label",
                     {
+                      staticClass: "block text-sm font-medium text-gray-700",
+                      attrs: { for: "first-name" },
+                    },
+                    [_vm._v("Products Name")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.name,
+                        expression: "name",
+                      },
+                    ],
+                    staticClass:
+                      "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md",
+                    attrs: {
+                      type: "text",
+                      name: "first-name",
+                      id: "first-name",
+                      autocomplete: "given-name",
+                    },
+                    domProps: { value: _vm.name },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.name = $event.target.value
+                      },
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-span-6" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "block text-sm font-medium text-gray-700",
+                      attrs: { for: "street-address" },
+                    },
+                    [_vm._v("Description")]
+                  ),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.description,
+                        expression: "description",
+                      },
+                    ],
+                    staticClass:
+                      "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md",
+                    domProps: { value: _vm.description },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.description = $event.target.value
+                      },
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-span-6 sm:col-span-3" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "block text-sm font-medium text-gray-700",
+                      attrs: { for: "last-name" },
+                    },
+                    [_vm._v("Price")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.price,
+                        expression: "price",
+                      },
+                    ],
+                    staticClass:
+                      "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md",
+                    attrs: {
+                      type: "text",
+                      name: "last-name",
+                      id: "last-name",
+                      autocomplete: "family-name",
+                    },
+                    domProps: { value: _vm.price },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.price = $event.target.value
+                      },
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-span-6 sm:col-span-3" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "block text-sm font-medium text-gray-700",
+                      attrs: { for: "email-address" },
+                    },
+                    [_vm._v("Discount")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.discount,
+                        expression: "discount",
+                      },
+                    ],
+                    staticClass:
+                      "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md",
+                    attrs: {
+                      type: "text",
+                      name: "email-address",
+                      id: "email-address",
+                      autocomplete: "email",
+                    },
+                    domProps: { value: _vm.discount },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.discount = $event.target.value
+                      },
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-span-6 sm:col-span-3" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "block text-sm font-medium text-gray-700",
+                      attrs: { for: "email-address" },
+                    },
+                    [_vm._v("Quantity")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.quantity,
+                        expression: "quantity",
+                      },
+                    ],
+                    staticClass:
+                      "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md",
+                    attrs: {
+                      type: "text",
+                      name: "email-address",
+                      id: "email-address",
+                      autocomplete: "email",
+                    },
+                    domProps: { value: _vm.quantity },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.quantity = $event.target.value
+                      },
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-span-6 sm:col-span-3" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "block text-sm font-medium text-gray-700",
+                      attrs: { for: "country" },
+                    },
+                    [_vm._v("Status")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.status,
+                          expression: "status",
+                        },
+                      ],
                       staticClass:
-                        "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                        "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+                      attrs: {
+                        id: "country",
+                        name: "country",
+                        autocomplete: "country-name",
+                      },
                       on: {
-                        click: function ($event) {
-                          return _vm.createProduct()
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.status = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
                         },
                       },
                     },
-                    [_vm._v("\n                    Save\n                ")]
+                    [
+                      _c("option", { attrs: { value: "active" } }, [
+                        _vm._v("Active"),
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "inactive" } }, [
+                        _vm._v("Inactive"),
+                      ]),
+                    ]
                   ),
-                ]
-              ),
+                ]),
+              ]),
             ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "px-4 py-3 bg-gray-50 text-right sm:px-6" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                    on: {
+                      click: function ($event) {
+                        return _vm.createProduct()
+                      },
+                    },
+                  },
+                  [_vm._v("\n                    Save\n                ")]
+                ),
+              ]
+            ),
           ]),
         ]),
       ]),

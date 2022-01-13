@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">
-            <form>
+
             <div class="shadow overflow-hidden sm:rounded-md">
                 <div class="px-4 py-5 bg-white sm:p-6">
                 <div class="grid grid-cols-6 gap-6">
@@ -63,7 +63,17 @@
                 </button>
                 </div>
             </div>
-            </form>
+
+
+  <div v-for="(find) in finds" :key="find.id">
+    <input v-model="find.value">
+    <input v-model="find.price">
+  </div>
+  <button @click="addFind">
+    New Find
+  </button>
+
+
         </div>
         </div>
     </div>
@@ -82,12 +92,13 @@
 export default {
     data () {
         return {
-            name: null,
-            description: null,
-            status: null,
-            price: null,
-            discount: null,
-            quantity: null
+            name: '',
+            description: '',
+            status: '',
+            price: '',
+            discount: '',
+            quantity: '',
+            finds: []
         }
     },
     methods: {
@@ -98,7 +109,8 @@ export default {
                 'status': this.status,
                 'price': this.price,
                 'discount': this.discount,
-                'quantity': this.quantity
+                'quantity': this.quantity,
+                'find': this.finds
             }
 
             let formBody = [];
@@ -116,7 +128,10 @@ export default {
             console.log(formBody);
             this.postData('http://localhost:8585/api/product/store', formBody)
             .then(data => {
-                console.log(data);
+                if (data.code === 14) {
+                    console.log(data.message);
+                }
+                //console.log(data);
                 this.clearForm();
             });
         },
@@ -124,7 +139,7 @@ export default {
             // Default options are marked with *
             const response = await fetch(url, {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                mode: 'cors', // no-cors, *cors, same-origin
+                mode: 'same-origin', // no-cors, *cors, same-origin
                 cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', // include, *same-origin, omit
                 headers: {
@@ -143,7 +158,10 @@ export default {
             this.status = '',
             this.price = '',
             this.discount = ''
-        }
+        },
+        addFind: function () {
+            this.finds.push({ value: '', price: '' });
+        },
     }
 }
 </script>
