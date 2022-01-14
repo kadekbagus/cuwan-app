@@ -53,6 +53,9 @@
               </tr>
             </tbody>
           </table>
+          <div>
+            <a v-for="(data,index) in numPage" :key="data.id" href="#" v-on:click="getProductList(5, index*5)">{{ index+1 }}|</a>
+          </div>
         </div>
       </div>
     </div>
@@ -68,19 +71,25 @@ export default {
         return {
             'listData': null,
             'totalRecords': null,
-            'returnedRecords': null
+            'returnedRecords': null,
+            'numPage': 1,
+            'perPage': 5,
+            'take': 5,
+            'skip': 0,
         }
     },
     methods: {
-        async getProductList() {
-            const response = await fetch('api/products?take=10');
+        async getProductList(take=5, skip=0) {
+            const response = await fetch(`api/products?take=${take}&skip=${skip}`);
             if (response.status >= 200 && response.status <= 299) {
                 const jsonResponse = await response.json();
                 if (jsonResponse.code === 1 && jsonResponse.message === 'success') {
                     this.listData = jsonResponse.data.records;
                     this.totalRecords = jsonResponse.data.total_records;
                     this.returnedRecords = jsonResponse.data.returned_records;
+                    this.numPage = this.totalRecords%this.perPage
                 }
+                console.log(this.numPage)
             } else {
                 console.log(response.status, response.statusText)
             }
