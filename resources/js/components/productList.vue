@@ -48,7 +48,8 @@
                   {{ formatDate(data.created_at) }}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a> |
+                  <a v-on:click="deleteProduct(data.id)" href="#" class="text-indigo-600 hover:text-indigo-900">Delete</a>
                 </td>
               </tr>
             </tbody>
@@ -87,8 +88,10 @@ export default {
                     this.listData = jsonResponse.data.records;
                     this.totalRecords = jsonResponse.data.total_records;
                     this.returnedRecords = jsonResponse.data.returned_records;
-                    this.numPage = this.totalRecords%this.perPage
+                    this.numPage = Math.ceil(this.totalRecords/this.perPage);
                 }
+                console.log(this.totalRecords)
+                console.log(this.perPage)
                 console.log(this.numPage)
             } else {
                 console.log(response.status, response.statusText)
