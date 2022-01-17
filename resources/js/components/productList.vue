@@ -49,7 +49,7 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a> |
-                  <a v-on:click="deleteProduct(data.id)" href="#" class="text-indigo-600 hover:text-indigo-900">Delete</a>
+                  <a v-on:click="deleteProduct(data.product_id)" href="#" class="text-indigo-600 hover:text-indigo-900">Delete</a>
                 </td>
               </tr>
             </tbody>
@@ -99,7 +99,36 @@ export default {
         },
         formatDate(input) {
             return moment(String(input)).format('MM/DD/YYYY hh:mm')
-        }
+        },
+        deleteProduct(id) {
+          let queryString = `http://localhost:8585/api/product/${id}`;
+          console.log(queryString);
+          this.postData(queryString, '')
+            .then(data => {
+                if (data.code === 14) {
+                    console.log(data.message);
+                }
+                console.log(data);
+                //this.clearForm();
+          });
+        },
+        async postData(url = '', formBody = '') {
+            // Default options are marked with *
+            const response = await fetch(url, {
+                method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+                mode: 'same-origin', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                //'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                //redirect: 'follow', // manual, *follow, error
+                //referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: formBody//JSON.stringify(data) // body data type must match "Content-Type" header
+            });
+            return response.json(); // parses JSON response into native JavaScript objects
+        },
     },
     created: function () {
         this.getProductList()

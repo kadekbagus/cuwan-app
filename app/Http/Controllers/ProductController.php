@@ -321,6 +321,8 @@ class ProductController extends Controller
             ], $httpCode);
         }
 
+        $product->delete();
+
         return response()->json([
             'code'    => StatusCode::REQUEST_OK,
             'message' => 'success',
