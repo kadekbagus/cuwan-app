@@ -31,4 +31,6 @@ Route::get('/product/create', function () {
     return view('product-create');
 });
 
-
+Route::get('/product/edit', function () {
+    return view('product-edit');
+});
