@@ -109,6 +109,7 @@ export default {
                     console.log(data.message);
                 }
                 console.log(data);
+                this.getProductList();
                 //this.clearForm();
           });
         },
