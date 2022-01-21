@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="app">
-        <Productcreate/>
+        <Productedit/>
     </div>
 </body>
 
