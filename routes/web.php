@@ -33,4 +33,4 @@ Route::get('/product/create', function () {
 
 Route::get('/product/edit/{id}', function () {
     return view('product-edit');
-});
+})->name('product-edit');
