@@ -48,7 +48,7 @@
                   {{ formatDate(data.created_at) }}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a> |
+                  <a :href="'/product/edit/' + data.product_id" class="text-indigo-600 hover:text-indigo-900">Edit</a> |
                   <a v-on:click="deleteProduct(data.product_id)" href="#" class="text-indigo-600 hover:text-indigo-900">Delete</a>
                 </td>
               </tr>
