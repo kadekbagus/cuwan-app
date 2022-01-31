@@ -85,7 +85,6 @@ export default ({
     },
     data () {
         return { 
-            'editData':null,
             name: '',
             description: '',
             status: '',
@@ -103,7 +102,6 @@ export default ({
             if (response.status >= 200 && response.status <= 299) {
                 const jsonResponse = await response.json();
                 if (jsonResponse.code === 1 && jsonResponse.message === 'success') {
-                    this.editData = jsonResponse.data;
                     this.name = jsonResponse.data.name;
                     this.description = jsonResponse.data.description;
                     this.status = jsonResponse.data.status;
