@@ -98,7 +98,8 @@ export default {
             price: '',
             discount: '',
             quantity: '',
-            finds: []
+            finds: [],
+            'apiUrl':this.appConfig.$api_url,
         }
     },
     methods: {
@@ -126,7 +127,7 @@ export default {
         createProduct () {
             let formBody = this.buildQueryString();
             console.log(formBody);
-            this.postData('http://localhost:8585/api/product/store', formBody)
+            this.postData(`${this.apiUrl}/api/product/store`, formBody)
             .then(data => {
                 if (data.code === 14) {
                     console.log(data.message);

@@ -79,6 +79,7 @@
 </template>
 
 <script>
+
 export default ({
     setup() {
         
@@ -91,6 +92,7 @@ export default ({
             price: '',
             discount: '',
             quantity: '',
+            'apiUrl':this.appConfig.$api_url,
         }
     },
     props: {
@@ -98,7 +100,7 @@ export default ({
     },
     methods: {
         async getProductDetail() {
-            const response = await fetch(`http://localhost:8585/api/product/${this.id}`);
+            const response = await fetch(`${this.apiUrl}/api/product/${this.id}`);
             if (response.status >= 200 && response.status <= 299) {
                 const jsonResponse = await response.json();
                 if (jsonResponse.code === 1 && jsonResponse.message === 'success') {

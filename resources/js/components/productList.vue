@@ -77,11 +77,12 @@ export default {
             'perPage': 5,
             'take': 5,
             'skip': 0,
+            'apiUrl':this.appConfig.$api_url,
         }
     },
     methods: {
         async getProductList(take=5, skip=0) {
-            const response = await fetch(`api/products?take=${take}&skip=${skip}`);
+            const response = await fetch(`${this.apiUrl}/api/products?take=${take}&skip=${skip}`);
             if (response.status >= 200 && response.status <= 299) {
                 const jsonResponse = await response.json();
                 if (jsonResponse.code === 1 && jsonResponse.message === 'success') {
@@ -101,7 +102,7 @@ export default {
             return moment(String(input)).format('MM/DD/YYYY hh:mm')
         },
         deleteProduct(id) {
-          let queryString = `http://localhost:8585/api/product/${id}`;
+          let queryString = `${this.apiUrl}/api/product/${id}`;
           console.log(queryString);
           this.postData(queryString, '')
             .then(data => {

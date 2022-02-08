@@ -12,6 +12,10 @@ import Productlist from './components/productList'
 import Productcreate from './components/productCreate'
 import Productedit from './components/productEdit'
 
+import { config } from './config';
+
+Vue.prototype.appConfig = config
+
 const app = new Vue({
     el: '#app',
     components: { Hello, Productlist, Productcreate, Productedit }
