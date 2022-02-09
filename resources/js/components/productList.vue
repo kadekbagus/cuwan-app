@@ -70,14 +70,14 @@ import moment from 'moment'
 export default {
     data () {
         return {
-            'listData': null,
-            'totalRecords': null,
-            'returnedRecords': null,
-            'numPage': 1,
-            'perPage': 5,
-            'take': 5,
-            'skip': 0,
-            'apiUrl':this.appConfig.$api_url,
+            listData: null,
+            totalRecords: null,
+            returnedRecords: null,
+            numPage: 1,
+            perPage: 5,
+            take: 5,
+            skip: 0,
+            apiUrl:this.appConfig.$api_url,
         }
     },
     methods: {

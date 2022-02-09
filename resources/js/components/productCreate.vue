@@ -99,7 +99,7 @@ export default {
             discount: '',
             quantity: '',
             finds: [],
-            'apiUrl':this.appConfig.$api_url,
+            apiUrl: this.appConfig.$api_url,
         }
     },
     methods: {

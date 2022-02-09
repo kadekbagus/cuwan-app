@@ -92,7 +92,7 @@ export default ({
             price: '',
             discount: '',
             quantity: '',
-            'apiUrl':this.appConfig.$api_url,
+            apiUrl: this.appConfig.$api_url,
         }
     },
     props: {
