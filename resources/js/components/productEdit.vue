@@ -115,6 +115,52 @@ export default ({
                 console.log(response.status, response.statusText)
             }
         },
+        buildQueryString () {
+            let details = {
+                'name': this.name,
+                'description': this.description,
+                'status': this.status,
+                'price': this.price,
+                'discount': this.discount,
+                'quantity': this.quantity
+            }
+
+            let formBody = [];
+            for (let property in details) {
+                let encodedKey = encodeURIComponent(property);
+                let encodedValue = encodeURIComponent(details[property]);
+                formBody.push(encodedKey + "=" + encodedValue);
+            }
+            formBody = formBody.join("&");
+
+            return formBody;
+        },
+        updateProduct () {
+            let formBody = this.buildQueryString();
+            console.log(formBody);
+            this.postData(`${this.apiUrl}/api/product/${this.id}`, formBody)
+            .then(data => {
+                if (data.code === 14) {
+                    console.log(data.message);
+                }
+                console.log(data);
+            });
+        },
+        async postData(url = '', formBody) {
+            // Default options are marked with *
+            const response = await fetch(url, {
+                method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+                mode: 'same-origin', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                //'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formBody
+            });
+            return response.json(); 
+        },
     },
     created: function () {
         this.getProductDetail()
