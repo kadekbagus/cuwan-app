@@ -1,6 +1,31 @@
 <template>
     <div class="bg-gray-100">
 
+
+<div v-if="success" class="w-full md:w-1/3 mx-auto">
+  <div class="flex p-5 rounded-lg shadow bg-white">
+	<div>
+	  <svg class="w-6 h-6 fill-current text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8z"/></svg>
+	</div>
+	<div class="ml-3">
+	  <h2 class="font-semibold text-gray-800">Update Success</h2>
+	  <p class="mt-2 text-sm text-gray-600 leading-relaxed">the data has been succesfuly updated</p>
+	</div>
+  </div>
+</div>
+
+<div v-if="failed" class="w-full md:w-1/3 mx-auto">
+  <div class="flex p-5 rounded-lg shadow bg-white">
+	<div>
+	  <svg class="w-6 h-6 fill-current text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8z"/></svg>
+	</div>
+	<div class="ml-3">
+	  <h2 class="font-semibold text-gray-800">Update Failed</h2>
+	  <p class="mt-2 text-sm text-gray-600 leading-relaxed">failed updating data</p>
+	</div>
+  </div>
+</div>
+
     <div class="hidden sm:block" aria-hidden="true">
         <div class="py-5">
         <div class="border-t border-gray-200" />
@@ -93,6 +118,8 @@ export default ({
             discount: '',
             quantity: '',
             apiUrl: this.appConfig.$api_url,
+            success: false,
+            failed: false,
         }
     },
     props: {
@@ -140,10 +167,12 @@ export default ({
             console.log(formBody);
             this.postData(`${this.apiUrl}/api/product/${this.id}`, formBody)
             .then(data => {
-                if (data.code === 14) {
-                    console.log(data.message);
+                if (data.code === 1) {
+                    this.success = true;
+                } else {
+                    this.failed = true;
+                    console.log(data);
                 }
-                console.log(data);
             });
         },
         async postData(url = '', formBody) {
