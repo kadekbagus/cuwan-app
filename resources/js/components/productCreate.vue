@@ -1,6 +1,6 @@
 
 <template>
-<div class="bg-gray-100">
+<div>
 
     <div class="hidden sm:block" aria-hidden="true">
         <div class="py-5">
